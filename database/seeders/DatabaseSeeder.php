@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'tag' => (new \Visus\Cuid2\Cuid2(10))->toString(),
         ]);
     }
 }
