@@ -1,9 +1,12 @@
 import './bootstrap';
 import '../css/app.css'
+import 'primeicons/primeicons.css'
 
 import { createApp, h } from 'vue'
 import { createInertiaApp } from '@inertiajs/vue3'
 import PrimeVue from 'primevue/config'
+import ToastService from 'primevue/toastservice';
+
 import { preset } from './themePreset'
 
 createInertiaApp({
@@ -23,6 +26,7 @@ createInertiaApp({
 
                 }
             })
+            .use(ToastService)
             .mount(el)
     },
 })

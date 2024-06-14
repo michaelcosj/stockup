@@ -1,6 +1,6 @@
 <script setup>
 import { computed } from 'vue'
-import { Link, router, useForm } from '@inertiajs/vue3'
+import { useForm } from '@inertiajs/vue3'
 
 import GuestLayout from '@/Layout/GuestLayout.vue'
 
@@ -9,12 +9,10 @@ import Divider from 'primevue/divider';
 import InputText from 'primevue/inputtext'
 import Button from 'primevue/button'
 import Password from 'primevue/password';
-import Message from 'primevue/message';
-import Checkbox from 'primevue/checkbox';
 
 const form = useForm({
     email: null,
-    username: null,
+    name: null,
     password: null,
     password_confirmation: null,
 })
@@ -50,11 +48,11 @@ function submit() {
                             </p>
                         </div>
                         <div class="flex flex-col gap-2">
-                            <label for="username" class="text-sm">Username</label>
-                            <InputText id="username" placeholder="Hikaru Nakamura" v-model="form.username"
-                                :invalid="form.errors.username" />
-                            <p v-if="form.errors.username" class="text-right text-sm text-red-800">
-                                {{ form.errors.username }}
+                            <label for="name" class="text-sm">Name</label>
+                            <InputText id="name" placeholder="Hikaru Nakamura" v-model="form.name"
+                                :invalid="form.errors.name" />
+                            <p v-if="form.errors.name" class="text-right text-sm text-red-800">
+                                {{ form.errors.name }}
                             </p>
                         </div>
                         <div class="flex flex-col gap-2">

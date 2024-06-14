@@ -31,7 +31,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials, $request->remember_me)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('dashboard');
+            return redirect()->intended('list.index');
         }
 
         return back()->withErrors(['email'])->onlyInput('email');

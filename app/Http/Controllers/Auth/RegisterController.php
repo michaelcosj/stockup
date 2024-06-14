@@ -4,17 +4,19 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class RegisterController extends Controller
 {
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): Response
     {
         return Inertia::render('Auth/Register');
     }
@@ -22,7 +24,7 @@ class RegisterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         $request->validate([
             'email' => 'required|email|unique:users',
@@ -32,13 +34,13 @@ class RegisterController extends Controller
 
         $user = User::create([
             'email' => $request->email,
-            'name' => $request->username,
+            'name' => $request->name,
             'password' => Hash::make($request->password),
             'tag' => (new \Visus\Cuid2\Cuid2(10))->toString(),
         ]);
 
         Auth::login($user);
 
-        return redirect('dashboard');
+        return redirect()->route('lists.index');
     }
 }
